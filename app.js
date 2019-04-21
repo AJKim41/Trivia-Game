@@ -48,7 +48,7 @@ class Game {
     for (let answer in questions) {
       const composeAnswerTag = `<p onclick="newGame.checkAnswer(
         '${answer}'
-      )" class="answers" style="font-size: 24px; cursor: pointer;padding: 25px;background: lightgray;">${answer}: ${
+      )" class="answers" style="font-size: 24px; cursor: pointer;padding: 25px;background: lightgray;box-shadow: 0px 2px 2px 2px rgba(0,0,0, 20%);">${answer}: ${
         questions[answer]
       }</p>`;
       answersStringTemplate = `
@@ -93,13 +93,19 @@ class Game {
 
   displayQuestion() {
     if (questions[this.currentQuestion] === undefined) {
-      document.querySelector("#question").innerHTML = `<p>Correct Answers: ${
+      document.querySelector(
+        "#question"
+      ).innerHTML = `<p style="text-align:center; font-size: 20px;font-weight: bold;  color:#fff;">Correct Answers: ${
         this.correctAnswers
-      }</p><p>Incorrect Answers: ${this.wrongAnswers}</p>`;
+      }</p><p style="text-align:center; font-size: 20px;font-weight: bold;  color:#fff;">Incorrect Answers: ${
+        this.wrongAnswers
+      }</p>`;
     } else {
-      document.querySelector("#question").innerHTML = `<h2><center>${
+      document.querySelector(
+        "#question"
+      ).innerHTML = `<h2 style=" color:#fff;"><center>${
         questions[this.currentQuestion].question
-      }</center></h2><p style="text-align:center">Time left to answer question:</p><p id="timer" style="text-align:center"></p>
+      }</center></h2><p style="text-align:center; font-size: 20px;font-weight: bold;  color:#fff;">Time left to answer question:</p><p id="timer" style="text-align:center; font-size: 20px; font-weight: bold; color:#fff;"></p>
     ${this.generateAnswers(questions[this.currentQuestion].answers)}`;
       this.initiateTimer();
     }
@@ -108,18 +114,18 @@ class Game {
   displayIfCorrect(result) {
     if (result) {
       document.querySelector("#question").innerHTML =
-        "<h3>Correct Answer!</h3>";
+        "<h3 style='text - align: center; font - size: 20px; font - weight: bold;  color:#fff;'>Correct Answer!</h3>";
     } else {
       if (result !== null) {
         document.querySelector(
           "#question"
-        ).innerHTML = `<h3>Incorrect Answer!</h3><p>Correct Answer Is: ${
+        ).innerHTML = `<h3 style='text-align:center; font-size: 20px; font-weight: bold;  color:#fff;'>Incorrect Answer!</h3><p style="text-align:center; font-size: 20px; font-weight: bold; color:#fff;">Correct Answer Is: ${
           questions[this.currentQuestion].correctAnswer
         }</p>`;
       } else {
         document.querySelector(
           "#question"
-        ).innerHTML = `<h3>Out of time!</h3><p>Correct Answer Is: ${
+        ).innerHTML = `<h3 style="text-align:center; font-size: 20px; font-weight: bold;  color:#fff;">Out of time!</h3><p style="text-align:center; font-size: 20px; font-weight: bold;  color:#fff;">Correct Answer Is: ${
           questions[this.currentQuestion].correctAnswer
         }</p>`;
       }
