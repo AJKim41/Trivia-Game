@@ -19,6 +19,17 @@ const questions = [
       d: "4th"
     },
     correctAnswer: "b"
+  },
+  {
+    question:
+      "Two identical cars collide head on. Each car is traveling at 100 km/h. The impact force on each car is the same as hitting a solid wall at:",
+    answers: {
+      a: "100 km/h",
+      b: "200 km/h",
+      c: "150 km/h",
+      d: "50 km/h "
+    },
+    correctAnswer: "a"
   }
 ];
 
