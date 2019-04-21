@@ -36,7 +36,9 @@ class Game {
     for (let answer in questions) {
       const composeAnswerTag = `<p onclick="newGame.checkAnswer(
         '${answer}'
-      )">${answer}: ${questions[answer]}</p>`;
+      )" class="answers" style="font-size: 24px; cursor: pointer;padding: 25px;background: lightgray;">${answer}: ${
+        questions[answer]
+      }</p>`;
       answersStringTemplate = `
     ${answersStringTemplate}
     ${composeAnswerTag}
@@ -79,9 +81,9 @@ class Game {
         this.correctAnswers
       }</p><p>Incorrect Answers: ${this.wrongAnswers}</p>`;
     } else {
-      document.querySelector("#question").innerHTML = `<h2>${
+      document.querySelector("#question").innerHTML = `<h2><center>${
         questions[this.currentQuestion].question
-      }</h2><p style="text-align:center">Time left to answer question:</p><p id="timer" style="text-align:center"></p>
+      }</center></h2><p style="text-align:center">Time left to answer question:</p><p id="timer" style="text-align:center"></p>
     ${this.generateAnswers(questions[this.currentQuestion].answers)}`;
       this.initiateTimer();
     }

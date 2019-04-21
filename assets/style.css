@@ -1,3 +1,13 @@
 #timer {
     text-align: center;
 }
+
+#main-header {
+    text-align: center;
+}
+
+.answers:hover {
+    cursor: pointer;
+    padding: 25px;
+    background: lightgray;
+}
