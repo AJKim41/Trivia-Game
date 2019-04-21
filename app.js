@@ -10,12 +10,13 @@ const questions = [
     correctAnswer: "c"
   },
   {
-    question: "What day is Christmas celebrated annually?",
+    question:
+      "You're 3rd place right now in a race. What place are you in when you pass the person in 2nd place?",
     answers: {
-      a: "Wednesday",
-      b: "25th",
-      c: "Saturday",
-      d: "21st"
+      a: "1st",
+      b: "2nd",
+      c: "3rd",
+      d: "4th"
     },
     correctAnswer: "b"
   }
@@ -55,7 +56,11 @@ class Game {
       this.displayIfCorrect(result);
     } else {
       this.wrongAnswers++;
-      this.displayIfCorrect(result);
+      if (result !== null) {
+        this.displayIfCorrect(result);
+      } else {
+        this.displayIfCorrect(result);
+      }
     }
     ++this.currentQuestion;
     setTimeout(
@@ -94,11 +99,19 @@ class Game {
       document.querySelector("#question").innerHTML =
         "<h3>Correct Answer!</h3>";
     } else {
-      document.querySelector(
-        "#question"
-      ).innerHTML = `<h3>Incorrect Answer!</h3><p>Correct Answer Is: ${
-        questions[this.currentQuestion].correctAnswer
-      }</p>`;
+      if (result !== null) {
+        document.querySelector(
+          "#question"
+        ).innerHTML = `<h3>Incorrect Answer!</h3><p>Correct Answer Is: ${
+          questions[this.currentQuestion].correctAnswer
+        }</p>`;
+      } else {
+        document.querySelector(
+          "#question"
+        ).innerHTML = `<h3>Out of time!</h3><p>Correct Answer Is: ${
+          questions[this.currentQuestion].correctAnswer
+        }</p>`;
+      }
     }
   }
 
@@ -111,7 +124,12 @@ class Game {
     this.countDownTimer = setInterval(countDownTick.bind(this), 1000);
 
     const timer = function() {
-      this.nextQuestion(false);
+      let result = this.result;
+      if (this.result === null) {
+        this.nextQuestion(result);
+      } else {
+        this.nextQuestion(false);
+      }
     };
     this.intervalID = setInterval(timer.bind(this), 15000);
   }
